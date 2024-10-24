@@ -1,94 +1,103 @@
-import Image from "next/image";
+"use client";
+import localFont from "next/font/local";
 import styles from "./page.module.css";
+import { useState } from "react";
+import { ThemeSelector } from "@/components/themeSelector";
+import LanguageSelector from "@/components/languageSelector";
+
+const vinaSans = localFont({
+  src: "../public/static/fonts/VinaSans-Regular.ttf",
+  weight: "600",
+});
+
+const teko = localFont({
+  src: "../public/static/fonts/Teko-VariableFont_wght.ttf",
+  weight: "600",
+});
+
+const anonymous = localFont({
+  src: "../public/static/fonts/AnonymousPro-Regular.ttf",
+  weight: "600",
+});
 
 export default function Home() {
+  const [isDarkModeActive, setisDarkModeActive] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+
+  const handleThemeToggle = (buttonType) => {
+    if (buttonType == "light" && isDarkModeActive === false) return;
+    if (buttonType == "dark" && isDarkModeActive === true) return;
+    setisDarkModeActive((prevTheme) => (prevTheme === true ? false : true));
+  };
+
+  const handleLanguageChange = (language) => {
+    if (language == "en" && selectedLanguage === "en") return;
+    if (language == "pt" && selectedLanguage === "pt") return;
+    setSelectedLanguage(() => (selectedLanguage === "en" ? "pt" : "en"));
+  };
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+        <ThemeSelector
+          isDarkModeActive={isDarkModeActive}
+          handleThemeToggle={handleThemeToggle}
         />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+        <LanguageSelector
+          selectedLanguage={selectedLanguage}
+          handleLanguageChange={handleLanguageChange}
+        />
+        <h1 className={`${vinaSans.className}`}>Gustavo Holzmann</h1>
+        <h2 className={`${teko.className}`}>developer & designer</h2>
+        <section>
+          <h3 className={`${anonymous.className}`}>about</h3>
+          <p className={`${anonymous.className}`}>
+            Olá, sou um graduado em Design pela Universidade Federal do Ceará,
+            que desde o meio da graduação começou a trabalhar com programação.
+            Desde então, tenho desenvolvido minha carreira me utilizando da
+            minha experiência com o Design para enriquecer meu processos
+            enquanto Programador{" "}
+          </p>
+        </section>
+        <section>
+          <h3 className={`${anonymous.className}`}>career</h3>
+          <p className={`${anonymous.className}`}>
+            tive a oportunidade de estagiar em participar de diversas
+            oportunidades que se beneficiavam da minha experiência única como
+            desenvolvedor:
+          </p>
+          <ul>
+            <li className={`${anonymous.className}`}>
+              bolsista do projeto Bolsa Arte: Design Computacional como meio de
+              Expressão Artística
+            </li>
+            <li className={`${anonymous.className}`}>
+              estagiário de programação do Museu da Imagem e do Som (MIS-CE)
+            </li>
+            <li className={`${anonymous.className}`}>
+              desenvolvedor iOS no projeto Residência do Apple Developer Academy
+            </li>
+            <li className={`${anonymous.className}`}>
+              Programador Fullstack na Datawise, uma startup de analíticos
+            </li>
+            <li className={`${anonymous.className}`}>
+              Mentor de programação iOS e design no projeto Capacita Brasil
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3 className={`${anonymous.className}`}>projetos</h3>
+          <div>
+            <span>project 1 placeholder</span>
+            <span>project 2 placeholder</span>
+            <span>project 3 placeholder</span>
+            <span>project 4 placeholder</span>
+            <span>project 5 placeholder</span>
+          </div>
+        </section>
       </main>
       <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <h2 className={`${anonymous.className}`}>thanks for the read!</h2>
       </footer>
     </div>
   );
