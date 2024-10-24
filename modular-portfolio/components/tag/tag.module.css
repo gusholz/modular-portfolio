@@ -1,0 +1,14 @@
+.tag {
+  margin: 4px;
+  padding: 0.6rem;
+  border-radius: 5px;
+  max-width: fit-content;
+}
+
+.frontend {
+  background-color: lightgray;
+}
+
+.backend {
+  background-color: gray;
+}

@@ -1,7 +1,7 @@
 import styles from "./themeSelector.module.css";
 import NextImage from "next/image";
 
-export function ThemeSelector(props) {
+export default function ThemeSelector(props) {
   return (
     <div className={styles.container}>
       <span
