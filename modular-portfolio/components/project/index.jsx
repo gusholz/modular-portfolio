@@ -13,7 +13,7 @@ export default function Project(props) {
     <div>
       <NextImage
         className={`${styles.image}`}
-        src={"/static/images/gusmodules.png"}
+        src={props.imageName}
         width={320}
         height={180}
         alt=""

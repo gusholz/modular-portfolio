@@ -8,7 +8,11 @@ const anonymous = localFont({
 
 export default function ContentSection(props) {
   return (
-    <section className={styles.container}>
+    <section
+      className={
+        props.isTextSection ? styles.container : styles.projectContainer
+      }
+    >
       <h3 className={`${anonymous.className} ${styles.contentSectionHeader}`}>
         {props.title}
       </h3>

@@ -11,4 +11,14 @@
 
 .backend {
   background-color: gray;
+  color: #fafafa;
+}
+
+.gamedev {
+  background-color: #bf8975;
+  color: #fafafa;
+}
+
+.design {
+  background-color: #ffb6b9;
 }

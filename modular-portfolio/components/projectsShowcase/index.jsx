@@ -1,24 +1,21 @@
 import Project from "@/components/project";
 import styles from "./projectsShowcase.module.css";
 
-export default function ProjectsShowcase() {
+const defaultPath = "/static/images/";
+const defaultFileFormat = ".png";
+
+export default function ProjectsShowcase({ projects }) {
   return (
     <div className={styles.projectsContainer}>
-      <Project
-        projectName={"Gusholz Modules"}
-        projectDescription={"an open source component library"}
-        tags={["frontend", "backend"]}
-      />
-      <Project
-        projectName={"Gusholz Modules"}
-        projectDescription={"an open source component library"}
-        tags={["frontend"]}
-      />
-      <Project
-        projectName={"Gusholz Modules"}
-        projectDescription={"an open source component library"}
-        tags={["backend"]}
-      />
+      {projects.map((project, index) => (
+        <Project
+          key={index}
+          projectName={project.projectName}
+          projectDescription={project.projectDescription}
+          imageName={`${defaultPath}${project.imageName}${defaultFileFormat}`}
+          tags={project.tags}
+        />
+      ))}
     </div>
   );
 }

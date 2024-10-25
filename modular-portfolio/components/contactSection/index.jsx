@@ -1,5 +1,6 @@
 import Link from "next/link";
 import localFont from "next/font/local";
+import styles from "./contactSection.module.css";
 
 const anonymous = localFont({
   src: "../../public/static/fonts/AnonymousPro-Regular.ttf",
@@ -8,11 +9,16 @@ const anonymous = localFont({
 
 export default function ContactSection() {
   return (
-    <div>
+    <div className={styles.container}>
       <h1 className={`${anonymous.className}`}>contatos</h1>
-      <p>email: gustavobarretohv@live.com</p>
-      <p>telefone: (85) 99915-7089</p>
-      <Link href={"https://www.linkedin.com/in/gustavo-holzmann/"}>
+      <p className={`${anonymous.className}`}>
+        email: gustavobarretohv@live.com
+      </p>
+      <p className={`${anonymous.className}`}>telefone: (85) 99915-7089</p>
+      <Link
+        href={"https://www.linkedin.com/in/gustavo-holzmann/"}
+        className={`${anonymous.className}`}
+      >
         linkedin: /gusholz
       </Link>
     </div>

@@ -7,6 +7,9 @@ import LanguageSelector from "@/components/languageSelector";
 import ContentSection from "@/components/contentSection";
 import ProjectsShowcase from "@/components/projectsShowcase";
 import ContactSection from "@/components/contactSection";
+import CareerList from "@/components/careerList";
+import Footer from "@/components/footer";
+import getTranslation from "@/utils/getTranslation";
 
 const vinaSans = localFont({
   src: "../public/static/fonts/VinaSans-Regular.ttf",
@@ -15,11 +18,6 @@ const vinaSans = localFont({
 
 const teko = localFont({
   src: "../public/static/fonts/Teko-VariableFont_wght.ttf",
-  weight: "600",
-});
-
-const anonymous = localFont({
-  src: "../public/static/fonts/AnonymousPro-Regular.ttf",
   weight: "600",
 });
 
@@ -39,6 +37,8 @@ export default function Home() {
     setSelectedLanguage(() => (selectedLanguage === "en" ? "pt" : "en"));
   };
 
+  const texts = getTranslation(selectedLanguage);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -50,51 +50,59 @@ export default function Home() {
           selectedLanguage={selectedLanguage}
           handleLanguageChange={handleLanguageChange}
         />
-        <h1 className={`${vinaSans.className}`}>Gustavo Holzmann</h1>
-        <h2 className={`${teko.className}`}>developer & designer</h2>
+        <h1 className={`${vinaSans.className}`}>{texts.name}</h1>
+        <h2 className={`${teko.className}`}>{texts.callout}</h2>
         <ContentSection
-          title={"about"}
+          title={texts.about}
+          content={texts.aboutText}
+          isTextSection={true}
+        />
+        <ContentSection
+          title={texts.career}
+          isTextSection={true}
           content={
-            "Olá, sou um graduado em Design pela Universidade Federal do Ceará, que desde o meio da graduação começou a trabalhar com programação. Desde então, tenho desenvolvido minha carreira me utilizando da minha experiência com o Design para enriquecer meu processos enquanto Programador"
+            <CareerList
+              texts={[
+                texts.carrerText,
+                texts.careerListFirstItem,
+                texts.careerListSecondItem,
+                texts.careerListThirdItem,
+                texts.careerListFourthItem,
+                texts.careerListFifthItem,
+              ]}
+            />
           }
         />
         <ContentSection
-          title={"career"}
+          title={texts.projects}
           content={
-            <>
-              <p>
-                tive a oportunidade de estagiar em participar de diversas
-                oportunidades que se beneficiavam da minha experiência única
-                como desenvolvedor:
-              </p>
-              <ul>
-                <li className={`${anonymous.className}`}>
-                  bolsista do projeto Bolsa Arte: Design Computacional como meio
-                  de Expressão Artística
-                </li>
-                <li className={`${anonymous.className}`}>
-                  estagiário de programação do Museu da Imagem e do Som (MIS-CE)
-                </li>
-                <li className={`${anonymous.className}`}>
-                  desenvolvedor iOS no projeto Residência do Apple Developer
-                  Academy
-                </li>
-                <li className={`${anonymous.className}`}>
-                  Programador Fullstack na Datawise, uma startup de analíticos
-                </li>
-                <li className={`${anonymous.className}`}>
-                  Mentor de programação iOS e design no projeto Capacita Brasil
-                </li>
-              </ul>
-            </>
+            <ProjectsShowcase
+              projects={[
+                {
+                  projectName: texts.firstProjectName,
+                  projectDescription: texts.firstProjectDescription,
+                  imageName: texts.firstProjectImage,
+                  tags: ["frontend", "design"],
+                },
+                {
+                  projectName: texts.secondProjectName,
+                  projectDescription: texts.secondProjectDescription,
+                  imageName: texts.secondProjectImage,
+                  tags: ["gamedev", "design"],
+                },
+                {
+                  projectName: texts.thirdProjectName,
+                  projectDescription: texts.thirdProjectDescription,
+                  imageName: texts.thirdProjectImage,
+                  tags: ["gamedev", "design"],
+                },
+              ]}
+            />
           }
         />
-        <ContentSection title={"projects"} content={<ProjectsShowcase />} />
         <ContactSection />
       </main>
-      <footer className={styles.footer}>
-        <h2 className={`${anonymous.className}`}>thanks for the read!</h2>
-      </footer>
+      <Footer text={texts.footerCallout} />
     </div>
   );
 }
