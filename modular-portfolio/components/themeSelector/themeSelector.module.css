@@ -5,10 +5,13 @@
   position: fixed;
   right: 0;
   margin-right: 5%;
+  background-color: var(--background-color);
+  border-radius: 4px;
 }
 
 .icon {
-  border-radius: 20%;
+  color: var(--background-color);
+  border-radius: 4px;
   padding: 0.3rem;
 }
 
@@ -18,10 +21,6 @@
 
 .selectedIcon {
   background-color: #bf8975;
-}
-
-.nonSelectedIcon {
-  background-color: transparent;
 }
 
 .nonSelectedIcon:hover {

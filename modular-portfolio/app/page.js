@@ -22,14 +22,7 @@ const teko = localFont({
 });
 
 export default function Home() {
-  const [isDarkModeActive, setisDarkModeActive] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en");
-
-  const handleThemeToggle = (buttonType) => {
-    if (buttonType == "light" && isDarkModeActive === false) return;
-    if (buttonType == "dark" && isDarkModeActive === true) return;
-    setisDarkModeActive((prevTheme) => (prevTheme === true ? false : true));
-  };
 
   const handleLanguageChange = (language) => {
     if (language == "en" && selectedLanguage === "en") return;
@@ -42,10 +35,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <ThemeSelector
-          isDarkModeActive={isDarkModeActive}
-          handleThemeToggle={handleThemeToggle}
-        />
+        <ThemeSelector />
         <LanguageSelector
           selectedLanguage={selectedLanguage}
           handleLanguageChange={handleLanguageChange}

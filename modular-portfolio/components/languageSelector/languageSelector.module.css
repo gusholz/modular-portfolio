@@ -6,10 +6,12 @@
   right: 0;
   margin-right: 5%;
   margin-top: 8rem;
+  background-color: var(--background-color);
+  border-radius: 4px;
 }
 
 .icon {
-  border-radius: 20%;
+  border-radius: 4px;
   padding: 0.3rem;
   max-width: 42px;
 }
@@ -33,4 +35,5 @@
 
 .h1 {
   font-size: 24px;
+  color: var(--text-color);
 }
